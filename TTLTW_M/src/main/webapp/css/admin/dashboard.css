@@ -1,0 +1,219 @@
+/* =========================
+   ROOT & GLOBAL
+========================= */
+:root {
+  --sidebar-w: 270px;
+}
+
+body {
+  background: #f4f5f7;
+  color: #1f2937;
+}
+
+
+/* =========================
+   LAYOUT
+========================= */
+.app {
+  min-height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: var(--sidebar-w);
+  height: 100vh;
+  position: sticky;
+  top: 0;
+
+  background: #fff;
+  border-right: 1px solid #e5e7eb;
+  overflow: auto;
+}
+
+.main {
+  flex: 1;
+  padding: 22px 22px 30px;
+}
+
+
+/* =========================
+   BRAND
+========================= */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 18px 18px 10px;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 10px;
+  background: #4f46e5;
+  color: #fff;
+
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+
+/* =========================
+   SIDEBAR NAVIGATION
+========================= */
+.nav-section-title {
+  padding: 10px 18px 6px;
+
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin: 2px 10px;
+  padding: 10px 18px;
+
+  border-radius: 12px;
+
+  color: #374151;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.nav-item.active {
+  background: #eef2ff;
+  color: #4f46e5;
+  border: 1px solid #e0e7ff;
+}
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  margin-bottom: 14px;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+
+/* =========================
+   PANEL
+========================= */
+.panel {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 16px 18px;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.panel-head h5 {
+  margin: 0;
+  font-weight: 900;
+}
+
+
+/* =========================
+   STAT CARD
+========================= */
+.stat-card {
+  padding: 16px;
+
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.stat-card .kpi {
+  font-size: 28px;
+  font-weight: 950;
+  letter-spacing: -0.5px;
+}
+
+.stat-card .label {
+  color: #6b7280;
+  font-weight: 700;
+}
+
+.stat-card .trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 0.25rem 0.6rem;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  border-radius: 999px;
+  border: 1px solid transparent;
+
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.trend.up {
+  background: #ecfdf3;
+  border-color: #a7f3d0;
+  color: #047857;
+}
+
+.trend.down {
+  background: #fff7ed;
+  border-color: #fed7aa;
+  color: #9a3412;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+.table thead th {
+  background: #fbfcfe;
+  border-top: 0;
+
+  font-size: 13px;
+  font-weight: 900;
+  color: #6b7280;
+}
+
+.table td {
+  font-size: 14px;
+  color: #111827;
+  border-color: #eef2f7;
+}
