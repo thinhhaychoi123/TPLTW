@@ -1,10 +1,11 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <aside class="sidebar">
       <div class="brand">
         <div class="brand-badge">CO</div>
         <div>
           <div style="font-weight:900; font-size:18px;">Spodut</div>
-          <div style="font-size:12px; color:#6b7280;">Admin Panel</div>
+          <div style="font-size:12px; color:#6b7280;">Trang Admin</div>
         </div>
       </div>
 
@@ -17,45 +18,54 @@
       </a>
 
       <a class="nav-item">
-        <i class="bi bi-bag"></i>
-        <span>Products</span>
+        <i class="bi bi-database"></i>
+        <span>Quản lý</span>
+      </a>
+
+	  <a class="nav-item ${activeMenu == 'category' ? 'active' : ''} ms-3" href="${pageContext.request.contextPath}/admin/category-list" style="margin-top:-2px;">
+        <i class="bi bi-tag"></i>
+        <span>Thể loại</span>
       </a>
 
       <a class="nav-item ${activeMenu == 'product' ? 'active' : ''} ms-3" 
       href="${pageContext.request.contextPath}/admin/product-list" style="margin-top:-2px;">
-        <i class="bi bi-list-check"></i>
-        <span>Product List</span>
+        <i class="bi bi-bag"></i>
+        <span>Sản phẩm</span>
       </a>
-
-      <a class="nav-item  ${activeMenu == 'category' ? 'active' : ''} ms-3" href="${pageContext.request.contextPath}/admin/category-list" style="margin-top:-2px;">
-        <i class="bi bi-tag"></i>
-        <span>Categories</span>
+      
+	 <a class="nav-item ${activeMenu == 'order' ? 'active' : ''} ms-3" 
+      href="${pageContext.request.contextPath}/admin/order-list" style="margin-top:-2px;">
+        <i class="bi bi-receipt"></i>
+        <span>Đơn hàng</span>
       </a>
-
+      
+     <a class="nav-item ${activeMenu == 'customer' ? 'active' : ''} ms-3"
+      	href="${pageContext.request.contextPath}/admin/customer-list" style="margin-top:-2px;">
+        <i class="bi bi-people"></i>
+        <span>Khách hàng</span>
+      </a>
+      
+	 <a class="nav-item ${activeMenu == 'discount' ? 'active' : ''} ms-3" 
+		href="${pageContext.request.contextPath}/admin/discount-list" style="margin-top:-2px;">
+        <i class="bi bi-percent"></i>
+        <span>Mã giảm giá</span>
+      </a>
+      
+      
       <div class="nav-section-title mt-2">Others</div>
 
       <a class="nav-item" href="#">
-        <i class="bi bi-receipt"></i>
-        <span>Sales</span>
-      </a>
-
-      <a class="nav-item" href="#">
-        <i class="bi bi-people"></i>
-        <span>Customers</span>
-      </a>
-
-      <a class="nav-item" href="#">
-        <i class="bi bi-graph-up"></i>
-        <span>Analytics</span>
+        <i class="bi bi-graph-up-arrow"></i>
+        <span>Thống kê</span>
       </a>
 
       <a class="nav-item" href="#">
         <i class="bi bi-bell"></i>
-        <span>Notifications</span>
+        <span>Thông báo</span>
       </a>
 
       <a class="nav-item" href="#">
         <i class="bi bi-gear"></i>
-        <span>Settings</span>
+        <span>Cài đặt</span>
       </a>
     </aside>

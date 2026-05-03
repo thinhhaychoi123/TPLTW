@@ -19,14 +19,7 @@
       <div class="page-header">
         <h1 class="page-title">Dashboard</h1>
 
-        <div class="d-flex align-items-center gap-2">
-          <button class="btn btn-outline-secondary btn-sm rounded-circle" type="button" aria-label="Search">
-            <i class="bi bi-search"></i>
-          </button>
-          <button class="btn btn-outline-secondary btn-sm rounded-circle" type="button" aria-label="User">
-            <i class="bi bi-person"></i>
-          </button>
-        </div>
+     
       </div>
 
       <!-- KPI row -->
