@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Products - Dashboard</title>
+  <title>Sản phẩm - Dashboard</title>
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,17 +29,9 @@
     <main class="main">
       <!-- Page header -->
       <div class="page-header">
-        <h1 class="page-title">Products</h1>
+        <h1 class="page-title">Sản phẩm</h1>
 
-        <!-- optional right icons -->
-        <div class="d-flex align-items-center gap-3">
-          <button class="btn btn-outline-secondary btn-sm rounded-circle" type="button" aria-label="Search">
-            <i class="bi bi-search"></i>
-          </button>
-          <button class="btn btn-outline-secondary btn-sm rounded-circle" type="button" aria-label="User">
-            <i class="bi bi-person"></i>
-          </button>
-        </div>
+        
       </div>
 
       <!-- Panel -->
