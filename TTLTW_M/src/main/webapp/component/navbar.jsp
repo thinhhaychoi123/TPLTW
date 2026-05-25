@@ -59,17 +59,16 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">
-                            <a href="index.html" class="nav-item nav-link">Trang chủ</a>
-                            <a href="shop.html" class="nav-item nav-link">Tất cả sản phẩm</a>
+                            <a href="${pageContext.request.contextPath}/home" class="nav-item nav-link">Trang chủ</a>
+                            <a href="${pageContext.request.contextPath}/shop" class="nav-item nav-link">Tất cả sản phẩm</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Trang khác</a>
                                 <div class="dropdown-menu m-0">
-                                    <a href="bestseller.html" class="dropdown-item">Bán chạy</a>
-                                    <a href="cart.html" class="dropdown-item">Giỏ hàng</a>
-                                    <a href="cheackout.html" class="dropdown-item">Thanh toán</a>
+                                    <a href="${pageContext.request.contextPath}/cart" class="dropdown-item">Giỏ hàng</a>
+                                    <a href="${pageContext.request.contextPath}/checkout" class="dropdown-item">Thanh toán</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link me-2">Liên hệ</a>
+                            <a href="${pageContext.request.contextPath}/contact" class="nav-item nav-link me-2">Liên hệ</a>
                             <div class="nav-item dropdown d-block d-lg-none mb-3">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">All Category</a>
                                 <div class="dropdown-menu m-0">
