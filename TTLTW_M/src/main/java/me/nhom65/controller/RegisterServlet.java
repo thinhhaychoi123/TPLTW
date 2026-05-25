@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import me.nhom65.model.User;
-import me.nhom65.service.MailService;
 import me.nhom65.service.UserService;
 import me.nhom65.util.UserValidcator;
 import me.nhom65.util.UserValidcator.ResultValidcator;
