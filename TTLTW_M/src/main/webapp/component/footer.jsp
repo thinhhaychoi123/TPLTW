@@ -1,158 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Electro - Electronics Website Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Icon Font Stylesheet -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-</head>
-
-<body>
-
-   <!-- Spinner Start -->
-      <jsp:include page="/component/spinner.jsp" />
-    <!-- Spinner End -->
-
-
-    <!-- Topbar Start -->
-      <jsp:include page="/component/topbar.jsp" />
-    <!-- Topbar End -->
-
-    <!-- Navbar & Hero Start -->
-      <jsp:include page="/component/navbar.jsp" />
-    <!-- Navbar & Hero End -->
-
-    <!-- Single Page Header start -->
-    <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6 wow fadeInUp" data-wow-delay="0.1s">Cart Page</h1>
-        <ol class="breadcrumb justify-content-center mb-0 wow fadeInUp" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-            <li class="breadcrumb-item active text-white">Cart Page</li>
-        </ol>
-    </div>
-    <!-- Single Page Header End -->
-
-    <!-- Cart Page Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Tên sản phẩm</th>
-                            <th scope="col">Thể loại</th>
-                            <th scope="col">Giá</th>
-                            <th scope="col">Số lượng</th>
-                            <th scope="col">Tổng</th>
-                            <th scope="col">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <c:forEach var="cartview" items="${cartviews}">
-                        <tr>
-                         
-                            <th scope="row">
-                                <p class="mb-0 py-4">${cartview.productName}</p>
-                            </th>
-                            <td>
-                                <p class="mb-0 py-4">Unknown</p>
-                            </td>
-                            <td>
-                                <p class="mb-0 py-4">${cartview.productPrice}</p>
-                            </td>
-                            <td>
-                                <div class="input-group quantity py-4" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm text-center border-0"
-                                        value="${cartview.quantity}">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="mb-0 py-4">${cartview.totalPrice}</p>
-                            </td>
-                            <td class="py-4">
-                                <button class="btn btn-md rounded-circle bg-light border">
-                                    <i class="fa fa-times text-danger"></i>
-                                </button>
-                            	</td>
-                            
-                        </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-            <div class="mt-5">
-                <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
-                <button class="btn btn-primary rounded-pill px-4 py-3" type="button">Apply Coupon</button>
-            </div>
-            <div class="row g-4 justify-content-end">
-                <div class="col-8"></div>
-                <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
-                    <div class="bg-light rounded">
-                        <div class="p-4">
-                            <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
-                            <div class="d-flex justify-content-between mb-4">
-                                <h5 class="mb-0 me-4">Subtotal:</h5>
-                                <p class="mb-0">$96.00</p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <h5 class="mb-0 me-4">Shipping</h5>
-                                <div>
-                                    <p class="mb-0">Flat rate: $3.00</p>
-                                </div>
-                            </div>
-                            <p class="mb-0 text-end">Shipping to Ukraine.</p>
-                        </div>
-                        <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                            <h5 class="mb-0 ps-4 me-4">Total</h5>
-                            <p class="mb-0 pe-4">$99.00</p>
-                        </div>
-                        <a href="${pageContext.request.contextPath}/checkout" class="btn btn-primary rounded-pill px-4 py-3 text-uppercase mb-4 ms-4"
-                            type="button">Proceed Checkout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Cart Page End -->
-
-    <!-- Footer Start -->
+<!-- Footer Start -->
     <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
         <div class="container py-5">
             <div class="row g-4 rounded mb-5" style="background: rgba(255, 255, 255, .03);">
@@ -210,8 +58,8 @@
                     <div class="footer-item d-flex flex-column">
                         <div class="footer-item">
                             <h4 class="text-primary mb-4">Newsletter</h4>
-                            <p class="text-white mb-3">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum
-                                dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit.</p>
+                            <p class="mb-3">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum dolor sit
+                                amet, consectetur adipiscing elit consectetur adipiscing elit.</p>
                             <div class="position-relative mx-auto rounded-pill">
                                 <input class="form-control rounded-pill w-100 py-3 ps-4 pe-5" type="text"
                                     placeholder="Enter your email">
@@ -288,17 +136,3 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-</body>
-
-</html>

@@ -1,4 +1,4 @@
-package me.nhom65.controller.admin;
+package me.nhom65.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,9 +11,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import me.nhom65.model.Product;
 import me.nhom65.service.ProductService;
 
-@WebServlet("/admin/product-list")
-public class AdminProductServlet extends HttpServlet {
 
+@WebServlet("/shop")
+public class ShopServlet extends HttpServlet {
+	
 	/**
 	 * 
 	 */
@@ -27,23 +28,14 @@ public class AdminProductServlet extends HttpServlet {
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		if(request.getParameter("action") != null) {
-			String action = (String) request.getParameter("action");
-			if(action.equals("add")) {
-				request.getServletContext().getRequestDispatcher("/admin/admin_product_add.jsp").forward(request, response);
-				return;
-			}
-		}
-		request.setAttribute("activeMenu", "product");
 		List<Product> products = productService.getAllProducts();
 		request.setAttribute("products", products);
-		request.getServletContext().getRequestDispatcher("/admin/admin_product.jsp").forward(request, response);
+		request.getServletContext().getRequestDispatcher("/shop.jsp").forward(request, response);
 	}
 //	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		doGet(request,response);
 //	}
 	
 
+	
 }

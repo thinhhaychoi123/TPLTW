@@ -1,14 +1,13 @@
 package me.nhom65.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.nhom65.model.Category;
 import me.nhom65.model.Order;
 import me.nhom65.util.DatabaseConnection;
 
@@ -18,8 +17,9 @@ public class OrderDAO {
 		List<Order> resultList = new ArrayList<Order>();
 		try {
 			conn = DatabaseConnection.getConnection();
-			Statement stmt = conn.createStatement();
-			ResultSet result = stmt.executeQuery("SELECT * FROM orders");
+			String sql = "SELECT * FROM orders";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet result = ps.executeQuery();
 			while (result.next()) {
 				int orderid = result.getInt("order_id");
 				int userid = result.getInt("user_id");
@@ -33,7 +33,7 @@ public class OrderDAO {
 				Order order = new Order(orderid, userid, fullname, phone, address, paymethod, status, create_at, update_at);
 				resultList.add(order);
 			}
-			stmt.close();
+			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

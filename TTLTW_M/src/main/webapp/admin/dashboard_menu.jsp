@@ -46,7 +46,7 @@
       </a>
       
 	 <a class="nav-item ${activeMenu == 'discount' ? 'active' : ''} ms-3" 
-		href="${pageContext.request.contextPath}/admin/discount-list" style="margin-top:-2px;">
+		href="${pageContext.request.contextPath}/admin/product-list?action=add" style="margin-top:-2px;">
         <i class="bi bi-percent"></i>
         <span>Mã giảm giá</span>
       </a>
