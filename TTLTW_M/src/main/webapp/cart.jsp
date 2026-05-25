@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Electro - Electronics Website Template</title>
+    <title>Giỏ hàng | Thuốc bảo vệ thực vật</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -50,23 +50,27 @@
 
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
-        <h1 class="text-center text-white display-6 wow fadeInUp" data-wow-delay="0.1s">Cart Page</h1>
+        <h1 class="text-center text-white display-6 wow fadeInUp" data-wow-delay="0.1s">Trang giỏ hàng</h1>
         <ol class="breadcrumb justify-content-center mb-0 wow fadeInUp" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-            <li class="breadcrumb-item active text-white">Cart Page</li>
+            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+            <li class="breadcrumb-item active text-white">Trang giỏ hàng</li>
         </ol>
     </div>
     <!-- Single Page Header End -->
 
     <!-- Cart Page Start -->
+    
     <div class="container-fluid py-5">
+   		
         <div class="container py-5">
+             <h1 class="mb-4 wow fadeInUp" data-wow-delay="0.1s">Giỏ hàng của bạn</h1>
+        	
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Tên sản phẩm</th>
+                        	<th scope="col">&nbsp;</th>
+                         	<th scope="col">Tên sản phẩm</th>
                             <th scope="col">Thể loại</th>
                             <th scope="col">Giá</th>
                             <th scope="col">Số lượng</th>
@@ -77,7 +81,9 @@
                     <tbody>
                       <c:forEach var="cartview" items="${cartviews}">
                         <tr>
-                         
+                         	<th>
+                         		<img src="img/logo.png" class="rounded" alt=""  style="width: 80px; height: 80px; object-fit: cover;">
+                         	</th>
                             <th scope="row">
                                 <p class="mb-0 py-4">${cartview.productName}</p>
                             </th>
@@ -117,34 +123,37 @@
                     </tbody>
                 </table>
             </div>
-            <div class="mt-5">
-                <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
-                <button class="btn btn-primary rounded-pill px-4 py-3" type="button">Apply Coupon</button>
-            </div>
+            
             <div class="row g-4 justify-content-end">
-                <div class="col-8"></div>
+                <div class="col-8">
+                	<div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
+                    	<h1>Mã giảm giá</h1>
+        			</div>	
+                	<div class="mt-5">
+                	
+                		<input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Nhập mã giảm giá">
+                		<button class="btn btn-primary rounded-pill px-4 py-3" type="button">Áp dụng mã giảm giá</button>
+            		</div>
+            	</div>
                 <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
                     <div class="bg-light rounded">
                         <div class="p-4">
-                            <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                            <h1 class="display-6 mb-4">Tổng  <span class="fw-normal">giá sản phẩm</span></h1>
                             <div class="d-flex justify-content-between mb-4">
-                                <h5 class="mb-0 me-4">Subtotal:</h5>
+                                <h5 class="mb-0 me-4">Tạm tính:</h5>
                                 <p class="mb-0">$96.00</p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <h5 class="mb-0 me-4">Shipping</h5>
-                                <div>
-                                    <p class="mb-0">Flat rate: $3.00</p>
-                                </div>
+                                <h5 class="mb-0 me-4">Giảm giá:</h5>
+                                <p class="mb-0">Flat rate: $3.00</p>
                             </div>
-                            <p class="mb-0 text-end">Shipping to Ukraine.</p>
                         </div>
                         <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                            <h5 class="mb-0 ps-4 me-4">Total</h5>
+                            <h5 class="mb-0 ps-4 me-4">Tính tổng:</h5>
                             <p class="mb-0 pe-4">$99.00</p>
                         </div>
                         <a href="${pageContext.request.contextPath}/checkout" class="btn btn-primary rounded-pill px-4 py-3 text-uppercase mb-4 ms-4"
-                            type="button">Proceed Checkout</a>
+                            type="button">Bắt đầu thanh toán</a>
                     </div>
                 </div>
             </div>

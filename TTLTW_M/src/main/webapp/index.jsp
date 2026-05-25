@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Web thuoc bao ve thuc vat</title>
+    <title>Trang chủ | Web thuốc bảo vệ thực vật</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -112,34 +112,7 @@
     <!-- Searvices End -->
 
     <!-- Products Offer Start -->
-    <div class="container-fluid bg-light py-5">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
-                    <a href="#" class="d-flex align-items-center justify-content-between border bg-white rounded p-4">
-                        <div>
-                            <p class="text-muted mb-3">Find The Best Camera for You!</p>
-                            <h3 class="text-primary">Smart Camera</h3>
-                            <h1 class="display-3 text-secondary mb-0">40% <span
-                                    class="text-primary fw-normal">Off</span></h1>
-                        </div>
-                        <img src="img/product-1.png" class="img-fluid" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
-                    <a href="#" class="d-flex align-items-center justify-content-between border bg-white rounded p-4">
-                        <div>
-                            <p class="text-muted mb-3">Find The Best Whatches for You!</p>
-                            <h3 class="text-primary">Smart Whatch</h3>
-                            <h1 class="display-3 text-secondary mb-0">20% <span
-                                    class="text-primary fw-normal">Off</span></h1>
-                        </div>
-                        <img src="img/product-2.png" class="img-fluid" alt="">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- Products Offer End -->
 
 
@@ -149,7 +122,7 @@
             <div class="tab-class">
                 <div class="row g-4">
                     <div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
-                        <h1>Our Products</h1>
+                        <h1>Các sản phẩm</h1>
                     </div>
                     <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
                         <ul class="nav nav-pills d-inline-flex text-center mb-5">
