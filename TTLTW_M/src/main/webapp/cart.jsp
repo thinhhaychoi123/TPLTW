@@ -80,7 +80,7 @@
                     </thead>
                     <tbody>
                       <c:forEach var="cartview" items="${cartviews}">
-                        <tr>
+                        <tr class="cart-item" data-cart-item-id="${cartview.cartItemId}" data-product-price="${cartview.productPrice}" data-product-id="${cartview.productId}">
                          	<th>
                          		<img src="img/logo.png" class="rounded" alt=""  style="width: 80px; height: 80px; object-fit: cover;">
                          	</th>
@@ -91,29 +91,31 @@
                                 <p class="mb-0 py-4">Unknown</p>
                             </td>
                             <td>
-                                <p class="mb-0 py-4">${cartview.productPrice}</p>
+                                <p class="mb-0 py-4 productPrice">
+            						${cartview.productPrice}
+        						</p>
                             </td>
                             <td>
                                 <div class="input-group quantity py-4" style="width: 100px;">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                        <button class="btn btn-sm btn-minus rounded-circle bg-light border decreaseQty">
                                             <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm text-center border-0"
+                                    <input type="text" class="form-control form-control-sm text-center border-0 productQty"
                                         value="${cartview.quantity}">
                                     <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                        <button class="btn btn-sm btn-plus rounded-circle bg-light border increaseQty">
                                             <i class="fa fa-plus"></i>
                                         </button>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <p class="mb-0 py-4">${cartview.totalPrice}</p>
+                                <p class="mb-0 py-4 itemTotalPrice">${cartview.totalPrice}</p>
                             </td>
                             <td class="py-4">
-                                <button class="btn btn-md rounded-circle bg-light border">
+                                <button class="btn btn-md rounded-circle bg-light border removeItem">
                                     <i class="fa fa-times text-danger"></i>
                                 </button>
                             	</td>
@@ -141,16 +143,16 @@
                             <h1 class="display-6 mb-4">Tổng  <span class="fw-normal">giá sản phẩm</span></h1>
                             <div class="d-flex justify-content-between mb-4">
                                 <h5 class="mb-0 me-4">Tạm tính:</h5>
-                                <p class="mb-0">$96.00</p>
+                                <p class="mb-0">${totalPrice}</p>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h5 class="mb-0 me-4">Giảm giá:</h5>
-                                <p class="mb-0">Flat rate: $3.00</p>
+                                <p class="mb-0">0.0</p>
                             </div>
                         </div>
                         <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                             <h5 class="mb-0 ps-4 me-4">Tính tổng:</h5>
-                            <p class="mb-0 pe-4">$99.00</p>
+                            <p class="mb-0 pe-4">${totalPrice}</p>
                         </div>
                         <a href="${pageContext.request.contextPath}/checkout" class="btn btn-primary rounded-pill px-4 py-3 text-uppercase mb-4 ms-4"
                             type="button">Bắt đầu thanh toán</a>
@@ -304,10 +306,111 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
+	
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
+    <script>
+    	async function reloadWebAfterUpdate(cartItem) {
+
+        const productId = cartItem.dataset.productId;
+
+        console.log(productId);
+        const quantity = parseInt(
+            cartItem.querySelector('.productQty').value,
+            10
+        );
+
+        if (isNaN(quantity) || quantity <= 0) {
+            alert('Số lượng không hợp lệ');
+            return;
+        }
+
+        fetch("${pageContext.request.contextPath}/cart?action=update"
+                + "&pid=" + productId
+                + "&quantity=" + quantity,
+                { method: "POST" }
+            )
+            .then(res => res.json())
+            .then(data => {
+              	console.log("Update sucesss");
+            })
+            .catch(() => {
+             	console.log("Error throw");
+            });
+    	}
+    function updateTotalPrice(cartItem) {
+    	  const quantity =
+    	        parseInt(
+    	            cartItem.querySelector('.productQty').value
+    	        );
+    	    const productPrice =
+    	        parseFloat(
+    	            cartItem.dataset.productPrice
+    	        );
+    	    const totalPrice =
+    	        quantity * productPrice;
+    	    cartItem.querySelector('.itemTotalPrice')
+    	        .innerText = totalPrice.toFixed(2);
+    }
+    
+    document.querySelectorAll('.increaseQty')
+    .forEach(button => {
+
+        button.addEventListener('click', function () {
+
+            const cartItem =
+                this.closest('.cart-item');
+
+            const qtyInput =
+                cartItem.querySelector('.productQty');
+
+            qtyInput.value =
+                parseInt(qtyInput.value) + 1;
+
+            reloadWebAfterUpdate(cartItem);
+
+        });
+
+    });
+
+	
+    document.querySelectorAll('.decreaseQty')
+    .forEach(button => {
+        button.addEventListener('click', function () {
+            const cartItem =
+                this.closest('.cart-item');
+            const qtyInput =
+                cartItem.querySelector('.productQty');
+            let qty = parseInt(qtyInput.value);
+            if (qty > 1) {
+                qtyInput.value = qty - 1;   
+                reloadWebAfterUpdate(cartItem);
+            }
+        });
+    });
+
+    document.querySelectorAll(".removeItem").forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (!confirm("Bạn chắc chắn muốn xóa?")) return;
+            const item = btn.closest(".cart-item");
+            const bookId = item.dataset.cartItemId;
+            fetch("${pageContext.request.contextPath}/cart?action=delete&pid="+bookId, {
+                method: "POST"
+            })
+            .then(res => res.json())
+            .then(data => {
+            	if(data.type == 0){
+            		 item.remove();
+                     console.log("Xóa khỏi giỏ hàng thành công")
+            	}
+ 
+            });
+        });
+    });
+    
+    </script>
 </body>
 
 </html>

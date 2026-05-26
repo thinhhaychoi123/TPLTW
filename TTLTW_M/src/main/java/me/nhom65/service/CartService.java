@@ -62,4 +62,24 @@ public class CartService {
 		
 		return false;
 	}
+	public boolean removeItemInCart(int userId, int bid) {
+		if(!isCartExist(userId)) {
+			addNewCart(userId);
+		}
+		int cartID = findCartIdByUser(userId);
+		if(cartID > 0) {
+			return cartDAO.delete(cartID, bid);
+		}
+		return false;
+	}
+	public boolean removeAllItemInCart(int userId) {
+		if(!isCartExist(userId)) {
+			addNewCart(userId);
+		}
+		int cartID = findCartIdByUser(userId);
+		if(cartID > 0) {
+			return cartDAO.deleteAll(cartID);
+		}
+		return false;
+	}
 }

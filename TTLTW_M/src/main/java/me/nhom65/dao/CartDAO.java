@@ -137,27 +137,7 @@ public class CartDAO {
 		return false;
 	}
 	
-	private void forCopy(int test) {
-		Connection conn = null;
-		List<CartViewDAO> resultList = new ArrayList<CartViewDAO>();
-		try {
-			conn = DatabaseConnection.getConnection();
-			String sql = "SELECT ci.cart_item_id, ci.quantity, p.product_id ,p.name, p.price"
-					+ " FROM cart_items ci JOIN products p ON ci.product_id = p.product_id JOIN carts c ON ci.cart_id = c.cart_id"
-					+ " WHERE c.user_id = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, test);
-			ResultSet result = ps.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+	
 
 	public boolean isCartExist(int userId) {
 		Connection conn = null;
@@ -222,5 +202,47 @@ public class CartDAO {
 			}
 		}
 		return -1;
+	}
+
+	public boolean delete(int cartId, int bid) {
+		Connection conn = null;
+		try {
+			conn = DatabaseConnection.getConnection();
+			String sql = "DELETE FROM cart_items WHERE cart_id = ? AND product_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, cartId);
+			ps.setInt(2,  bid);
+			int result = ps.executeUpdate();
+			return result > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	public boolean deleteAll(int cartId) {
+		Connection conn = null;
+		try {
+			conn = DatabaseConnection.getConnection();
+			String sql = "DELETE FROM cart_items WHERE cart_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, cartId);
+			int result = ps.executeUpdate();
+			return result > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 }

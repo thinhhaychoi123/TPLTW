@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.nhom65.dto.CartViewDAO;
 import me.nhom65.model.Order;
 import me.nhom65.util.DatabaseConnection;
 
@@ -44,5 +45,27 @@ public class OrderDAO {
 			}
 		}
 		return resultList;
+	}
+	
+	private void forCopy(int test) {
+		Connection conn = null;
+		List<CartViewDAO> resultList = new ArrayList<CartViewDAO>();
+		try {
+			conn = DatabaseConnection.getConnection();
+			String sql = "SELECT ci.cart_item_id, ci.quantity, p.product_id ,p.name, p.price"
+					+ " FROM cart_items ci JOIN products p ON ci.product_id = p.product_id JOIN carts c ON ci.cart_id = c.cart_id"
+					+ " WHERE c.user_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, test);
+			ResultSet result = ps.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

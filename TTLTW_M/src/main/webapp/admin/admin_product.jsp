@@ -92,7 +92,7 @@
                   </td>
                   <td>${product.categoryId}</td>
                   <td>${product.price}</td>
-                  <td>${product.quantity}</td>
+                  <td>99999999</td>
                   <td>
                     <span class="badge badge-pill badge-scheduled">${product.status}</span>
                   </td>

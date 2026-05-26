@@ -28,6 +28,9 @@ public class Order {
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+	public Order() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getOrderId() {
 		return orderId;
 	}
