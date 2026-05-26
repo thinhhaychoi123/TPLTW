@@ -20,5 +20,6 @@ public class ProductService {
 	public Product getProductFromId(int id) {
 		return dao.getProductById(id);
 	}
+
 	
 }

@@ -9,7 +9,7 @@
     <title>Trang chủ | Web thuốc bảo vệ thực vật</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
-    <meta content="" name="description">
+    <meta content="" name="description">	
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,7 +114,8 @@
     <!-- Products Offer Start -->
     
     <!-- Products Offer End -->
-
+    
+   
 
     <!-- Our Products Start -->
     <div class="container-fluid product py-5">
@@ -159,22 +160,30 @@
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
                                             <img src="img/logo.png" class="img-fluid w-100 rounded-top" alt="">
-                                            <div class="product-new">New</div>
+                                            <div class="product-new">Mới</div>
                                             <div class="product-details">
-                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
+                                                <a href="${pageContext.request.contextPath}/product?id=${product.productId}"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
                                         <div class="text-center rounded-bottom p-4">
-                                            <a href="#" class="d-block mb-2">Thuoc tru sau</a>
+                                            <a href="#" class="d-block mb-2">Phân loại</a>
                                             <a href="#" class="d-block h4">${product.name}</a>
                                             <span class="text-primary fs-5">${product.price}</span>
                                         </div>
                                     </div>
                                     <div
                                         class="product-item-add border border-top-0 rounded-bottom text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                class="fas fa-shopping-cart me-2"></i> Thêm vào giỏ</a>
+                                        <button class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4 add-to-cart-btn"
+        									type="button"
+        									data-bs-toggle="modal"
+        									data-bs-target="#addToCartModal"
+        									data-product-id="${product.productId}"
+        									data-product-name="${product.name}"
+        									data-product-price="${product.price}"
+        									data-product-image="img/logo.png">
+    											<i class="fa fa-shopping-cart me-2"></i>
+    											Thêm vào giỏ
+										</button> 
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
                                                 <i class="fas fa-star text-primary"></i>
@@ -249,13 +258,13 @@
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
                                             <img src="img/logo.png" class="img-fluid w-100 rounded-top" alt="">
-                                            <div class="product-new">New</div>
+                                            <div class="product-new">Mới</div>
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
                                         <div class="text-center rounded-bottom p-4">
-                                            <a href="#" class="d-block mb-2">Thuoc tru sau</a>
+                                            <a href="#" class="d-block mb-2">Thể loại</a>
                                             <a href="#" class="d-block h4">${product.name}</a>
                                             <span class="text-primary fs-5">${product.price}</span>
                                         </div>
@@ -336,7 +345,9 @@
         </div>
     </div>
     <!-- Our Products End -->
-
+ 	<!-- Add To Cart Modal Start -->
+	<jsp:include page="/component/modal/addToCart.jsp" />
+	<!-- Add To Cart Modal End -->
     <!-- Product Banner Start -->
     
     <!-- Product Banner End -->

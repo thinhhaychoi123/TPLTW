@@ -329,25 +329,20 @@
                             </div>
                             <div class="d-flex flex-column mb-3">
                                 <small>Product SKU: N/A</small>
-                                <small>Số lượng: <strong class="text-primary">${product.quantity}</strong></small>
+                                <small>Số lượng: <strong class="text-primary"> 0</strong></small>
                             </div>
-                            <div class="input-group quantity mb-5" style="width: 100px;">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-minus rounded-circle bg-light border">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                                <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <a href="#"
-                                class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-white"></i> Add to cart</a>
-                        </div>
+                            <button class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary add-to-cart-btn"
+        											type="button"
+        											data-bs-toggle="modal"
+        											data-bs-target="#addToCartModal"
+        											data-product-id="${product.productId}"
+        											data-product-name="${product.name}"
+        											data-product-price="${product.price}"
+        											data-product-image="img/logo.png">
+    													<i class="fa fa-shopping-bag me-2 text-white"></i>
+    													Thêm vào giỏ
+							</button> 
+                       		 </div>
                         <div class="col-lg-12">
                             <nav>
                                 <div class="nav nav-tabs mb-3">
@@ -696,6 +691,11 @@
     </div>
     <!-- Related Product End -->
 
+
+	<!-- Add To Cart Modal Start -->
+	<jsp:include page="/component/modal/addToCart.jsp" />
+	<!-- Add To Cart Modal End -->
+	
     <!-- Footer Start-->
 	  <jsp:include page="/component/footer.jsp" />
     <!-- Footer End -->
