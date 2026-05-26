@@ -9,12 +9,10 @@ public class Product {
 	private int categoryId; 
 	private String imageUrl; 
 	private double price; 
-	private int quantity; 
 	private String status; 
 	private Timestamp createdAt; 
 	private Timestamp updatedAt;
-	public Product(int productId, String name, String description, int categoryId, String imageUrl, double price,
-			int quantity, String status, Timestamp createdAt, Timestamp updatedAt) {
+	public Product(int productId, String name, String description, int categoryId, String imageUrl, double price, String status, Timestamp createdAt, Timestamp updatedAt) {
 		super();
 		this.productId = productId;
 		this.name = name;
@@ -22,7 +20,6 @@ public class Product {
 		this.categoryId = categoryId;
 		this.imageUrl = imageUrl;
 		this.price = price;
-		this.quantity = quantity;
 		this.status = status;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
@@ -47,9 +44,6 @@ public class Product {
 	}
 	public double getPrice() {
 		return price;
-	}
-	public int getQuantity() {
-		return quantity;
 	}
 	public String getStatus() {
 		return status;
@@ -77,9 +71,6 @@ public class Product {
 	}
 	public void setPrice(double price) {
 		this.price = price;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
 	}
 	public void setStatus(String status) {
 		this.status = status;

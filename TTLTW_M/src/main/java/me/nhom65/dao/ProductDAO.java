@@ -28,7 +28,6 @@ public class ProductDAO {
 				p.setCategoryId(result.getInt("category_id"));
 				p.setImageUrl(result.getString("image_url")); 
 				p.setPrice(result.getDouble("price")); 
-				p.setQuantity(result.getInt("quantity")); 
 				p.setStatus(result.getString("status")); 
 				p.setCreatedAt(result.getTimestamp("created_at"));
 				p.setUpdatedAt(result.getTimestamp("updated_at")); 
@@ -63,7 +62,6 @@ public class ProductDAO {
 				p.setCategoryId(result.getInt("category_id"));
 				p.setImageUrl(result.getString("image_url")); 
 				p.setPrice(result.getDouble("price")); 
-				p.setQuantity(result.getInt("quantity")); 
 				p.setStatus(result.getString("status")); 
 				p.setCreatedAt(result.getTimestamp("created_at"));
 				p.setUpdatedAt(result.getTimestamp("updated_at")); 

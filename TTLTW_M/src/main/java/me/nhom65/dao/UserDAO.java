@@ -12,6 +12,7 @@ import java.util.List;
 import me.nhom65.model.User;
 import me.nhom65.util.DatabaseConnection;
 
+//Can update s sql thanh ps sql
 public class UserDAO {
 
 	public List<User> getAllUsers() {
@@ -33,6 +34,7 @@ public class UserDAO {
 				User student = new User(userid, username, password, email, phone, address, role, create_at);
 				resultList.add(student);
 			}
+			
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
