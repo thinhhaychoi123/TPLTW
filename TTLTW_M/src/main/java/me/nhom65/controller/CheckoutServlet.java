@@ -10,8 +10,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import me.nhom65.dto.CartViewDAO;
+import me.nhom65.model.Order;
 import me.nhom65.model.User;
 import me.nhom65.service.CartService;
+import me.nhom65.service.OrderService;
 
 @WebServlet("/checkout")
 public class CheckoutServlet extends HttpServlet {
@@ -21,11 +23,12 @@ public class CheckoutServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 6259630436033547445L;
 	private CartService cartService;
-	
+	private OrderService orderService;
 	
 	public void init() throws ServletException {
 		super.init();
 		this.cartService = new CartService();
+		this.orderService = new OrderService();
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,6 +37,26 @@ public class CheckoutServlet extends HttpServlet {
     	 List<CartViewDAO> cartviews = cartService.getCartViewFromUser(user.getUsedId());
     	 request.setAttribute("cartviews", cartviews);
     	 request.getServletContext().getRequestDispatcher("/checkout.jsp").forward(request, response);
+	}
+	
+	private boolean handleCheckout(User user, HttpServletRequest request) {
+		String fullname = request.getParameter("fullname");
+		String address = request.getParameter("address");
+		String phone = request.getParameter("phone");
+		String note = request.getParameter("note");
+		String paymentOption = request.getParameter("paymentOption");
+//		
+		Order order = new Order();
+//		
+//		
+//		
+//		order.setUserId(user.getUsedId());
+//		order.setFullName(fullname);
+//		order.setAddress(address);
+//		order.setPhone(phone);
+//		order.setPaymentMethod(paymentOption);
+		
+		return orderService.handleCheckout(user, order);
 	}
 
 }
