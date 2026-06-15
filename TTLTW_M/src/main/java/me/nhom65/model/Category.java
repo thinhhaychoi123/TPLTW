@@ -23,6 +23,10 @@ public class Category {
 		this.parentId = parentId;
 		this.createdAt = createdAt;
 	}
+	
+	public Category() {
+		
+	}
 
 	public int getCategoryId() {
 		return categoryId;
@@ -46,6 +50,18 @@ public class Category {
 
 	public List<Category> getChildren() {
 		return children;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

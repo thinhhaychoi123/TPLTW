@@ -57,15 +57,32 @@ public class MailService {
 //		        """.formatted(password);
 //		  sendEmail(email,subject,content);
 //	}
-	
+	public void sendOTPRegister(String email, String otp) {
+		 if(email.isBlank()) return;
+		 String subject = "Gửi mã OTP Đăng Ký";
+		 String content = """
+		            <h3>Chào bạn,</h3>
+		            <p>Gmail của bạn đã được đăng ký vói web thuốc BVTV</p>
+		            <p>Mã otp của bạn là:</p>
+		            <a>%s</a>
+		            <p>Nhập OTP lên web để hoàn tất việc đăng ký !</p>
+		            <p>Có hiệu lực trong 30 phút !</p>
+		            <p>Hãy bỏ qua nếu có người dùng đăng ký bất hợp pháp</p>
+		        """.formatted(otp);
+		  sendEmail(email,subject,content);
+		}
 	public void sendOTP(String email, String otp) {
 	 if(email.isBlank()) return;
-	 String subject = "Gửi mã OTP";
+	 String subject = "Gửi mã OTP Quên Mật Khẩu";
 	 String content = """
 	            <h3>Chào bạn,</h3>
+	            <p>Tài khoản của bạn hiện đang quên mật khẩu </p>
 	            <p>Mã otp của bạn là:</p>
 	            <a>%s</a>
+	            <p>Nhập OTP lên web để reset mật khẩu ngay!</p>
+	            <p>Có hiệu lực trong 30 phút !</p>
+		        <p>Hãy bỏ qua nếu có người dùng đòi đổi mật khẩu bất hợp pháp</p>
 	        """.formatted(otp);
 	  sendEmail(email,subject,content);
-}
+	}
 }

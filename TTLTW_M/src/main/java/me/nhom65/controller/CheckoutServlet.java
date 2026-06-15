@@ -35,18 +35,51 @@ public class CheckoutServlet extends HttpServlet {
 		 HttpSession session = request.getSession(false);
     	 User user = (User) session.getAttribute("currentUser");
     	 List<CartViewDAO> cartviews = cartService.getCartViewFromUser(user.getUsedId());
+    	 double totalPrice = caculateTotalPrice(cartviews);
     	 request.setAttribute("cartviews", cartviews);
+    	 request.setAttribute("totalPriceAll", totalPrice);
     	 request.getServletContext().getRequestDispatcher("/checkout.jsp").forward(request, response);
 	}
-	
+	private double caculateTotalPrice(List<CartViewDAO> cartviews) {
+		double totalPrice = 0;
+		if(!cartviews.isEmpty()) {
+			for(CartViewDAO cvd : cartviews) {
+				totalPrice += cvd.getTotalPrice();
+			}
+		}
+		return totalPrice;
+	}
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		User user = (User) session.getAttribute("currentUser");
+	       
+	    boolean issucess = handleCheckout(user,request);
+	    response.sendRedirect(request.getContextPath() + "/cart"); 
+	}
 	private boolean handleCheckout(User user, HttpServletRequest request) {
+		
 		String fullname = request.getParameter("fullname");
-		String address = request.getParameter("address");
+		
+		//Address
+		String province = request.getParameter("province");
+		String district = request.getParameter("district");
+		String ward = request.getParameter("ward");
+		
+		String addressfinal = province+", "+district+", "+ward;
+		
 		String phone = request.getParameter("phone");
 		String note = request.getParameter("note");
-		String paymentOption = request.getParameter("paymentOption");
+		String paymentMethod =
+		        request.getParameter("paymentMethod");
 //		
+		System.out.println(fullname+"-"+addressfinal+"-"+phone+"-"+note+"-"+paymentMethod);
 		Order order = new Order();
+		order.setUserId(user.getUsedId());
+		order.setFullName(fullname);
+		order.setAddress(addressfinal);
+		order.setPhone(phone);
+		order.setPaymentMethod(paymentMethod);
+		
 //		
 //		
 //		

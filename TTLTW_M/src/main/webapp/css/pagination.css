@@ -1,0 +1,31 @@
+/* Pagination */
+.panel-foot{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.page-numbers{
+  display:flex;
+  align-items:center;
+  gap: 8px;
+  color:#6b7280;
+  font-weight:700;
+}
+
+.page-numbers .dot{
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid transparent;
+  background: transparent;
+}
+
+.page-numbers .dot.active{
+  border:1px solid rgba(79,70,229,.25);
+  background:#eef2ff;
+  color:#4338ca;
+}

@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import me.nhom65.model.OTP;
 import me.nhom65.model.User;
 import me.nhom65.service.UserService;
+import me.nhom65.util.enums.OTPType;
 
 @WebServlet("/otp")
 public class OtpCheckServlet  extends HttpServlet {
@@ -44,11 +45,11 @@ public class OtpCheckServlet  extends HttpServlet {
 			request.getRequestDispatcher("/otp.jsp").forward(request, response);
 			return;
 		}
-		OTP findotp = userService.getOtp(user.getUserName(), "REGISTER", otp);
+		OTP findotp = userService.getOtp(user.getUserName(),  OTPType.REGISTER, otp);
 		
 		//Neu tim thay otp, kich hoat va dang nhap han luon
 		if(findotp != null) {
-			if(userService.activeOtp(user.getUsedId(), "REGISTER", otp)) {
+			if(userService.activeOtp(user.getUsedId(), OTPType.REGISTER, otp)) {
 				HttpSession session = request.getSession(true);
 	            session.setAttribute("currentUser", user);
 	            response.sendRedirect(request.getContextPath() + "/home");

@@ -70,7 +70,7 @@ public class AdminCategoryServlet extends HttpServlet {
 		    }
 		}
 //		list.forEach(c -> System.out.println(c.toString()+"-"+c.getName()+"-"+c.getChildren().size())); Debug
-		return roots;
+		return list;
 	}
 	
 

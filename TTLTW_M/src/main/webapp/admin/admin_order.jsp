@@ -23,8 +23,6 @@
     <!-- Sidebar -->
     <jsp:include page="dashboard_menu.jsp" />
 
-	<!-- Modal -->
- 	<jsp:include page="modal/admin/modal_product.jsp" />
     <!-- Main -->
     <main class="main">
       <!-- Page header -->
@@ -82,12 +80,20 @@
                   <td>
                   <span>${order.orderId}</span>
                   </td>
-                  <td>${order.fullname}</td>
+                  <td>${order.fullName}</td>
                   <td>${order.paymentMethod}</td>
                   <td>${order.status}</td>
                   <td>${order.createdAt}</td>                        
                   <td class="text-end">
-                    <a href="#" class="text-decoration-none text-primary fw-bold">Thay đổi</a>
+                  <a href="${pageContext.request.contextPath}/admin/order-list/edit?id=${order.orderId}"
+                    		class="btn btn-warning btnEditOrder">
+               				<i class="bi bi-pencil-square me-1"></i>
+           					 </a>
+           					 
+           		  <a data-order-id="${order.orderId}"
+        						class="btn btn-danger btnDeleteOrder">
+    							<i class="bi bi-trash me-1"></i>
+				 </a>
                   </td>
                 </tr>
 			</c:forEach>
@@ -120,5 +126,23 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  	document.querySelectorAll(".btnDeleteOrder")
+  		.forEach(button => {
+
+     	 button.addEventListener("click", function () {
+
+       	   const orderId = this.dataset.orderId;
+           const confirmDelete = confirm(
+              "Bạn có chắc muốn xóa order # "+ orderId + " ?"
+          	);
+          
+         	if (confirmDelete) {
+              	window.location.href = "${pageContext.request.contextPath}/admin/order-list/delete?orderId="+orderId;
+          	}
+      });
+
+  });
+  </script>
 </body>
 </html>

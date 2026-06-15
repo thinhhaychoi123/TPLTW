@@ -16,6 +16,20 @@ public class CategoryService {
 	public List<Category> getAllCategory(){
 		return dao.getAll();
 	}
+
+	public boolean addCategory(Category category) {
+		int id = dao.addCategory(category);
+		return id > 0;
+	}
+	public boolean updateCategory(Category category) {
+		boolean updated = dao.updateCategory(category);
+		return updated;
+	}
+
+	public boolean deleteCategory(int categoryId) {
+		boolean deleted = dao.deleteCategory(categoryId);
+		return deleted;
+	}
 	
 	
 }

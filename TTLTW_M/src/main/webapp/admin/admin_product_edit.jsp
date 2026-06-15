@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thêm sản phẩm - Dashboard</title>
+  <title>Xem sản phẩm - Dashboard</title>
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,14 +27,17 @@
     <main class="main">
       <!-- Page header -->
       <div class="page-header">
-        <h1 class="page-title">Thêm sản phẩm</h1>
+        <h1 class="page-title">Xem sản phẩm</h1>
       </div>
       
       <section class="panel">
         <div class="panel-head">
-          <h5>Thông tin sản phẩm</h5>
-         <button class="btn btn-outline-secondary rounded-pill px-4 py-2" type="button">
+          <h5>Thông tin sản phẩm ID: ${product.productId}</h5>
+         <button class="btn btn-outline-secondary" type="button">
             <i class="bi bi-arrow-left me-2"></i> Trở về
+          </button>
+          <button class="btn btn-primary" type="submit" >
+                <i class="bi bi-save me-1"></i> Lưu
           </button>
         </div>
 
@@ -44,7 +47,7 @@
               <div class="col-12 col-md-6">
                 <div>
                   <label class="form-label" for="name">Tên sản phẩm</label>
-                  <input id="name" class="form-control" placeholder="Ví dụ: T-Shirt" required />
+                  <input id="name" class="form-control" value ="${product.name}" required >
                 </div>
               </div>
 
@@ -58,13 +61,11 @@
               <div class="col-12 col-md-6">
                 <div>
                   <label class="form-label" for="category">Thể loại</label>
+                  
                   <select id="category" class="form-select" required>
-                    <option value="Women Cloths">Women Cloths</option>
-                    <option value="Shirts">Women Cloths / Shirts</option>
-                    <option value="Tops">Man Cloths / Tops</option>
-                    <option value="Outerwear">Women Cloths / Outerwear</option>
-                    <option value="Kids Cloths">Kid Cloths</option>
-                    <option value="Pants">Man Cloths / Pants</option>
+                   <c:forEach var="category" items="${categorys}">
+                    <option value="${category.categoryId}"  ${category.categoryId == product.categoryId ? 'selected' : ''} >${category.name}</option>
+                    </c:forEach>
                   </select>
                   <div class="help mt-1">Demo: danh sách giả lập, bạn có thể thay bằng dữ liệu thật.</div>
                 </div>
@@ -79,8 +80,8 @@
 
               <div class="col-12 col-md-3">
                 <div>
-                  <label class="form-label" for="stock">Số lượng còn lại:</label>
-                  <input id="stock" type="number" class="form-control" placeholder="79" readonly />
+                  <label class="form-label" for="stock">Hàng còn lại</label>
+                  <input id="stock" type="number" class="form-control" placeholder="79" required />
                 </div>
               </div>
 
@@ -97,20 +98,13 @@
 
               <div class="col-12 col-md-8">
                 <div>
-                  <label class="form-label" for="description">Description</label>
-                  <textarea id="description" class="form-control" rows="3" placeholder="Mô tả sản phẩm..."></textarea>
+                  <label class="form-label" for="description">Mô tả</label>
+                  <textarea id="description" class="form-control" rows="3">${product.description}</textarea>
                 </div>
               </div>
             </div>
 
-            <div class="d-flex gap-2 justify-content-end mt-4">
-              <button type="reset" class="btn btn-outline-secondary">
-                <i class="bi bi-x-lg me-1"></i> Reset
-              </button>
-              <button type="submit" class="btn btn-primary">
-                <i class="bi bi-save me-1"></i> Lưu
-              </button>
-            </div>
+           
 
             <div class="alert alert-success mt-3 d-none" id="successAlert" role="alert">
               Lưu thành công.

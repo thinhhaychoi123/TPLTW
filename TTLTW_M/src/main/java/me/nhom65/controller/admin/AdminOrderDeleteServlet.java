@@ -1,4 +1,4 @@
-package me.nhom65.controller;
+package me.nhom65.controller.admin;
 
 import java.io.IOException;
 
@@ -9,24 +9,26 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import me.nhom65.service.OrderService;
 
-@WebServlet("/order")
-public class OrderServlet extends HttpServlet {
-	
+
+@WebServlet("/admin/order-list/delete")
+public class AdminOrderDeleteServlet extends HttpServlet {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6259630436033547445L;
-	private OrderService orderService;
+	private OrderService orderservice;
 	
 	
 	public void init() throws ServletException {
 		super.init();
-		this.orderService = new OrderService();
+		this.orderservice = new OrderService();
 	}
-
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String id = request.getParameter("orderId");
+		orderservice.deleteOrder(Integer.parseInt(id));
 	}
-
 }
+	
 

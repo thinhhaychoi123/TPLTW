@@ -1,6 +1,7 @@
 package me.nhom65.model;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class OTP {
 	
@@ -49,6 +50,8 @@ public class OTP {
 		return expiredAt;
 	}
 	
-	
+	public boolean isExpired() {
+		return LocalDateTime.now() != null;
+	}
 	
 }

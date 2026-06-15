@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import me.nhom65.model.User;
 import me.nhom65.service.UserService;
+import me.nhom65.util.enums.OTPType;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -42,7 +43,7 @@ public class LoginServlet extends HttpServlet {
     
     if (user != null) {
     	if(user.getPasswordHash().equals(password)) {
-    		if(userService.isUnActiveOtp(username, "REGISTER")) {
+    		if(userService.isUnActiveOtp(username, OTPType.REGISTER)) {
     			HttpSession session = request.getSession(true);
                 session.setAttribute("email", user.getEmail());
     			response.sendRedirect("otp");

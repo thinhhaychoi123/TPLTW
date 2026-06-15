@@ -21,8 +21,7 @@
   <div class="app">
      <!-- Sidebar -->
     <jsp:include page="dashboard_menu.jsp" />
-	<!-- Modal -->
- 	<jsp:include page="modal/admin/modal_category.jsp" />
+	
     <!-- Main -->
     <main class="main">
       <div class="page-header">
@@ -59,31 +58,38 @@
                       </th>
                       <th style="min-width:260px;">Thể loại</th>
                       <th style="width:160px;">Thể loại cha</th>
-                      <th style="width:140px;">Level</th>
                       <th style="width:140px;">Số sản phẩm</th>
-                      <th class="text-end" style="width:120px;">Actions</th>
+                      <th class="text-end" style="width:120px;">Hành động</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <!-- level 0 -->
-                    
-                    <tr>
-                      <td><input class="form-check-input" type="checkbox" aria-label="Select row"></td>
-                      <td><span class="fw-bold">???</span></td>
-                      <td class="text-muted">—</td>
-                      <td>0</td>
-                      <td>12</td>
-                      <td class="text-end"><a href="#" class="text-decoration-none fw-bold text-primary">Det</a></td>
-                    </tr>
+                  <tbody>                  
 				  <c:forEach var="category" items="${categoryTree}">
                     <!-- level 2 -->
                     <tr>
                       <td><input class="form-check-input" type="checkbox" aria-label="Select row"></td>
                       <td>${category.name}</td>
                       <td>Shirts</td>
-                      <td>1</td>
                       <td>0</td>
-                      <td class="text-end"><a href="#" class="text-decoration-none fw-bold text-primary">Det</a></td>
+                      <td class="text-end">
+                      <button type="button"
+                    		class="btn btn-warning btnEditCategory"
+
+                    		data-bs-toggle="modal"
+                    		data-bs-target="#modalEditCategory"
+
+                    		data-category-id="${category.categoryId}"
+                    		data-category-name="${category.name}"
+                    		data-category-description="${category.description}">
+               				<i class="bi bi-pencil-square me-1"></i>
+           					 </button>
+           					 
+           					 <button type="button"
+        					class="btn btn-danger btnDeleteCategory"
+        					data-category-id="${category.categoryId}"
+        					data-category-name="${category.name}">
+    						<i class="bi bi-trash me-1"></i>
+							</button>
+                      </td>
                     </tr>
                     </c:forEach>
                   </tbody>
@@ -106,8 +112,56 @@
         </div>
       </div>
     </main>
+    
+    <!-- Modal -->
+ 	<jsp:include page="modal/admin/modal_category_add.jsp" />
+ 	<jsp:include page="modal/admin/modal_category_edit.jsp"/>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+
+	document.querySelectorAll(".btnEditCategory")
+    	.forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            document.getElementById("editCategoryId").value =
+                this.dataset.categoryId;
+
+            document.getElementById("editCategoryName").value =
+                this.dataset.categoryName;
+
+            document.getElementById("editCategoryDescription").value =
+                this.dataset.categoryDescription;
+        });
+
+    });
+	
+	document.querySelectorAll(".btnDeleteCategory")
+    .forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            const categoryId =
+                this.dataset.categoryId;
+
+            const categoryName =
+                this.dataset.categoryName;
+
+            const confirmDelete = confirm(
+                "Bạn có chắc muốn xóa thể loại: "
+                + categoryName + " ?"
+            );
+
+            if (confirmDelete) {
+                window.location.href = "${pageContext.request.contextPath}/admin/category-list/delete?categoryId="+categoryId;
+            }
+        });
+
+    });
+
+</script>
 </body>
+
 </html>	

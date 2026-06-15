@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<div class="modal fade" id="modalAddCategory" tabindex="-1">
+  <div class="modal-dialog modal-lg"> <!-- thêm modal-lg cho đẹp -->
+    <div class="modal-content">
+      
+      <form action="${pageContext.request.contextPath}/admin/category-list/add" method="post">
+        
+        <div class="modal-header">
+          <h5 class="modal-title">Cập nhật thể loại</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-3">
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Tên thể loại *</label>
+              <input name= "categoryName" class="form-control" required />
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Mô tả *</label>
+              <textarea name= "categoryDescription" class="form-control"></textarea>
+            </div>
+
+          </div>
+
+          <div class="alert alert-success mt-3 d-none" id="successAlert">
+            Lưu thành công
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-outline-secondary me-auto">Reset</button>
+          <button type="submit" class="btn btn-primary">Thêm thể loại</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
