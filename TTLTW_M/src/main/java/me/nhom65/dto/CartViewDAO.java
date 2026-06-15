@@ -3,16 +3,19 @@ package me.nhom65.dto;
 public class CartViewDAO {
 
 	  private int cartItemId;
+	  private int cartId;
 	  private int productId;
 	  private String productName;
 	  private double productPrice;
 	  private int quantity;
 	  private double totalPrice;
 	  
-	  public CartViewDAO(int cartItemId, int productId, String productName, double productPrice,
+	  
+	  public CartViewDAO(int cartItemId,int cartId, int productId, String productName, double productPrice,
 			int quantity) {
 		super();
 		this.cartItemId = cartItemId;
+		this.cartId = cartId;
 		this.productId = productId;
 		this.productName = productName;
 		this.productPrice = productPrice;
@@ -64,10 +67,8 @@ public class CartViewDAO {
 	  public double getTotalPrice() {
 		  return totalPrice;
 	  }
-
-	  public void setTotalPrice(double totalPrice) {
-		  this.totalPrice = totalPrice;
+	  public int getCartId() {
+			return cartId;
 	  }
-	
 	
 }

@@ -9,11 +9,12 @@ import java.sql.Timestamp;
 import me.nhom65.model.OTP;
 import me.nhom65.model.User;
 import me.nhom65.util.DatabaseConnection;
+import me.nhom65.util.enums.OTPType;
 
 public class OtpDAO {
 
 	
-	public boolean createOtp(User user,String type, String randomotp, Timestamp expireTime) {
+	public boolean createOtp(User user,OTPType type, String randomotp, Timestamp expireTime) {
 		Connection conn = null;
 
 		try {
@@ -24,7 +25,7 @@ public class OtpDAO {
 
 			ps.setInt(1, user.getUsedId());
 			ps.setString(2, randomotp);
-			ps.setString(3, type);
+			ps.setString(3, type.name());
 			ps.setTimestamp(4, expireTime);
 			int rows = ps.executeUpdate();
 			ps.close();
@@ -45,14 +46,14 @@ public class OtpDAO {
 		}
 	}
 
-	public OTP getOtp(String username, String type) {
+	public OTP getOtp(String username, OTPType type) {
 		Connection conn = null;
 		try  {
 			conn = DatabaseConnection.getConnection();
 			String sql = "SELECT o.* FROM otps o JOIN users u ON o.user_id = u.user_id WHERE u.username = ? AND o.type = ? AND o.expired_at > CURRENT_TIMESTAMP AND o.is_used = 0 ORDER BY o.otp_id DESC LIMIT 1;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
-			ps.setString(2, type);
+			ps.setString(2, type.name());
 			try (ResultSet rs = ps.executeQuery()) {
 				if(rs.next()) {
 					int id = rs.getInt("otp_id");
@@ -79,7 +80,7 @@ public class OtpDAO {
 		return null;
 	}
 
-	public OTP getOtpFromCode(String username, String type, String otpinput) {
+	public OTP getOtpFromCode(String username, OTPType type, String otpinput) {
 		Connection conn = null;
 		try  {
 			conn = DatabaseConnection.getConnection();
@@ -87,7 +88,7 @@ public class OtpDAO {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			ps.setString(2, otpinput);
-			ps.setString(3, type);
+			ps.setString(3, type.name());
 			try (ResultSet rs = ps.executeQuery()) {
 				if(rs.next()) {
 					int id = rs.getInt("otp_id");
@@ -113,7 +114,7 @@ public class OtpDAO {
 		}
 		return null;
 	}
-	public boolean activeOTP(int userId, String type, String otpinput) {
+	public boolean activeOTP(int userId, OTPType type, String otpinput) {
 		Connection conn = null;
 		try  {
 			conn = DatabaseConnection.getConnection();
@@ -121,7 +122,7 @@ public class OtpDAO {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, userId);
 			ps.setString(2, otpinput);
-			ps.setString(3, type);
+			ps.setString(3, type.name());
 			return ps.executeUpdate() > 0;	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -136,14 +137,14 @@ public class OtpDAO {
 		return false;
 	}
 
-	public boolean isUnActiveOTP(String username, String type) {
+	public boolean isUnActiveOTP(String username, OTPType type) {
 		Connection conn = null;
 		try  {
 			conn = DatabaseConnection.getConnection();
 			String sql = "SELECT 1 FROM otps o JOIN users u ON o.user_id = u.user_id WHERE u.username = ? AND o.type = ? AND o.expired_at > CURRENT_TIMESTAMP AND o.is_used = 0 LIMIT 1;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
-			ps.setString(2, type);
+			ps.setString(2, type.name());
 			try (ResultSet rs = ps.executeQuery()) {
 				if(rs.next()) {
 					return true;

@@ -68,6 +68,7 @@
 
 
     <!-- Checkout Page Start -->
+   <form action="checkout" method="POST">
     <div class="container-fluid bg-light overflow-hidden py-5">
     	<h1 class="mb-4 wow fadeInUp" data-wow-delay="0.1s">Đơn thanh toán</h1>
         <div class="row g-4">
@@ -88,6 +89,7 @@
                         <div class="col-md-4">
                             <label class="form-label">Họ và tên *</label>
                             <input type="text"
+                            	   name="fullname"
                                    class="form-control form-control-lg"
                                    placeholder="Nhập họ tên">
                         </div>
@@ -95,6 +97,7 @@
                         <div class="col-md-4">
                             <label class="form-label">Số điện thoại *</label>
                             <input type="text"
+                            		name="phone"
                                    class="form-control form-control-lg"
                                    placeholder="Nhập số điện thoại">
                         </div>
@@ -102,6 +105,7 @@
                         <div class="col-md-4">
                             <label class="form-label">Email</label>
                             <input type="email"
+                            name="email"
                                    class="form-control form-control-lg"
                                    placeholder="Nhập email">
                         </div>
@@ -109,24 +113,27 @@
                         <div class="col-md-4">
                             <label class="form-label">Tỉnh / Thành phố *</label>
 
-                            <select class="form-select form-select-lg">
+                            <select name="province" class="form-select form-select-lg">
                                 <option>Chọn tỉnh / thành phố</option>
+                                <option>Hà Nội</option>
+                                <option>TP Hồ Chí Minh</option>
                             </select>
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Quận / Huyện *</label>
 
-                            <select class="form-select form-select-lg">
+                            <select name="district" class="form-select form-select-lg">
                                 <option>Chọn quận / huyện</option>
+                                <option>Test</option>
                             </select>
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Phường / Xã *</label>
 
-                            <select class="form-select form-select-lg">
-                                <option>Chọn phường / xã</option>
+                            <select name="ward" class="form-select form-select-lg">
+                                <option>Unkown</option>
                             </select>
                         </div>
 
@@ -134,6 +141,7 @@
                             <label class="form-label">Địa chỉ cụ thể *</label>
 
                             <input type="text"
+                            	  name="addressDetail"
                                    class="form-control form-control-lg"
                                    placeholder="Số nhà, tên đường, thôn/xóm...">
                         </div>
@@ -141,7 +149,8 @@
                         <div class="col-12">
                             <label class="form-label">Ghi chú đơn hàng</label>
 
-                            <textarea class="form-control"
+                            <textarea name="note"
+                            		  class="form-control"
                                       rows="5"
                                       placeholder="Ghi chú thêm cho đơn hàng..."></textarea>
                         </div>
@@ -153,86 +162,104 @@
 
             <!-- Shipping Method -->
             <div class="card border-0 shadow-sm rounded-4">
-                <div class="card-body p-4">
+    <div class="card-body p-4">
 
-                    <h4 class="section-title mb-4">
-                        <i class="fas fa-truck me-2"></i>
-                        Phương thức giao hàng
-                    </h4>
+        <h4 class="section-title mb-4">
+            <i class="fas fa-truck me-2"></i>
+            Phương thức giao hàng
+        </h4>
 
-                    <div class="row g-3">
+        <div class="row g-3">
 
-                        <div class="col-md-4">
-                            <label class="shipping-card active">
+            <!-- STANDARD -->
+            <div class="col-md-4">
 
-                                <input type="radio"
-                                       name="shipping"
-                                       checked
-                                       hidden>
+                <input type="radio"
+                       class="btn-check"
+                       name="shippingMethod"
+                       id="shippingStandard"
+                       value="STANDARD"
+                       checked>
 
-                                <div class="fw-bold">
-                                    Giao hàng tiêu chuẩn
-                                </div>
+                <label class="shipping-card active"
+                       for="shippingStandard">
 
-                                <div class="text-muted small mt-2">
-                                    2 - 4 ngày
-                                </div>
-
-                                <div class="shipping-price">
-                                    Miễn phí
-                                </div>
-
-                            </label>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="shipping-card">
-
-                                <input type="radio"
-                                       name="shipping"
-                                       hidden>
-
-                                <div class="fw-bold">
-                                    Giao hàng nhanh
-                                </div>
-
-                                <div class="text-muted small mt-2">
-                                    1 - 2 ngày
-                                </div>
-
-                                <div class="shipping-price">
-                                    15.000đ
-                                </div>
-
-                            </label>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="shipping-card">
-
-                                <input type="radio"
-                                       name="shipping"
-                                       hidden>
-
-                                <div class="fw-bold">
-                                    Nhận tại cửa hàng
-                                </div>
-
-                                <div class="text-muted small mt-2">
-                                    Nhận trực tiếp
-                                </div>
-
-                                <div class="shipping-price">
-                                    Miễn phí
-                                </div>
-
-                            </label>
-                        </div>
-
+                    <div class="fw-bold">
+                        Giao hàng tiêu chuẩn
                     </div>
 
-                </div>
+                    <div class="text-muted small mt-2">
+                        2 - 4 ngày
+                    </div>
+
+                    <div class="shipping-price">
+                        Miễn phí
+                    </div>
+
+                </label>
+
             </div>
+
+            <!-- FAST -->
+            <div class="col-md-4">
+
+                <input type="radio"
+                       class="btn-check"
+                       name="shippingMethod"
+                       id="shippingFast"
+                       value="FAST">
+
+                <label class="shipping-card"
+                       for="shippingFast">
+
+                    <div class="fw-bold">
+                        Giao hàng nhanh
+                    </div>
+
+                    <div class="text-muted small mt-2">
+                        1 - 2 ngày
+                    </div>
+
+                    <div class="shipping-price">
+                        15.000đ
+                    </div>
+
+                </label>
+
+            </div>
+
+            <!-- PICKUP -->
+            <div class="col-md-4">
+
+                <input type="radio"
+                       class="btn-check"
+                       name="shippingMethod"
+                       id="shippingPickup"
+                       value="STORE_PICKUP">
+
+                <label class="shipping-card"
+                       for="shippingPickup">
+
+                    <div class="fw-bold">
+                        Nhận tại cửa hàng
+                    </div>
+
+                    <div class="text-muted small mt-2">
+                        Nhận trực tiếp
+                    </div>
+
+                    <div class="shipping-price">
+                        Miễn phí
+                    </div>
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
 
         </div>
         
@@ -301,24 +328,24 @@
                         <!-- Totals -->
                         <div class="summary-row">
                             <span>Tạm tính</span>
-                            <span>715.000đ</span>
+                            <span>${totalPriceAll}</span>
                         </div>
 
                         <div class="summary-row">
                             <span>Phí vận chuyển</span>
-                            <span class="text-success">Miễn phí</span>
+                            <span class="text-success">0đ</span>
                         </div>
 
                         <div class="summary-row">
                             <span>Giảm giá</span>
-                            <span class="text-danger">-50.000đ</span>
+                            <span class="text-danger">0đ</span>
                         </div>
 
                         <hr>
 
                         <div class="summary-row total-row">
                             <span>Tổng cộng</span>
-                            <span>665.000đ</span>
+                            <span>${totalPriceAll}</span>
                         </div>
 
                     </div>
@@ -326,66 +353,99 @@
 
                 <!-- Payment -->
                 <div class="card border-0 shadow-sm rounded-4">
-                    <div class="card-body p-4">
+    <div class="card-body p-4">
 
-                        <h4 class="section-title mb-4">
-                            <i class="fas fa-credit-card me-2"></i>
-                            Phương thức thanh toán
-                        </h4>
+        <h4 class="section-title mb-4">
+            <i class="fas fa-credit-card me-2"></i>
+            Phương thức thanh toán
+        </h4>
 
-                        <div class="payment-method active">
-                            <input type="radio"
-                                   checked
-                                   hidden>
+        <!-- COD -->
+        <div class="mb-3">
 
-                            <div class="fw-semibold">
-                                Thanh toán khi nhận hàng (COD)
-                            </div>
+            <input type="radio"
+                   class="btn-check"
+                   name="paymentMethod"
+                   id="paymentCOD"
+                   value="COD"
+                   checked>
 
-                            <div class="small text-muted">
-                                Thanh toán bằng tiền mặt
-                            </div>
-                        </div>
+            <label class="payment-method active"
+                   for="paymentCOD">
 
-                        <div class="payment-method">
-                            <input type="radio"
-                                   hidden>
-
-                            <div class="fw-semibold">
-                                Chuyển khoản ngân hàng
-                            </div>
-
-                            <div class="small text-muted">
-                                Chuyển khoản qua tài khoản
-                            </div>
-                        </div>
-
-                        <div class="payment-method">
-                            <input type="radio"
-                                   hidden>
-
-                            <div class="fw-semibold">
-                                Ví MoMo
-                            </div>
-
-                            <div class="small text-muted">
-                                Thanh toán qua MoMo
-                            </div>
-                        </div>
-
-                        <button class="btn btn-success btn-lg w-100 rounded-pill mt-4">
-                            <i class="fas fa-lock me-2"></i>
-                            ĐẶT HÀNG
-                        </button>
-
-                        <div class="secure-note">
-                            Thông tin thanh toán được bảo mật an toàn
-                        </div>
-
-                    </div>
+                <div class="fw-semibold">
+                    Thanh toán khi nhận hàng (COD)
                 </div>
 
-            </div>
+                <div class="small text-muted">
+                    Thanh toán bằng tiền mặt
+                </div>
+
+            </label>
+
+        </div>
+
+        <!-- BANK -->
+        <div class="mb-3">
+
+            <input type="radio"
+                   class="btn-check"
+                   name="paymentMethod"
+                   id="paymentBanking"
+                   value="BANKING">
+
+            <label class="payment-method"
+                   for="paymentBanking">
+
+                <div class="fw-semibold">
+                    Chuyển khoản ngân hàng
+                </div>
+
+                <div class="small text-muted">
+                    Chuyển khoản qua tài khoản
+                </div>
+
+            </label>
+
+        </div>
+
+        <!-- MOMO -->
+        <div class="mb-3">
+
+            <input type="radio"
+                   class="btn-check"
+                   name="paymentMethod"
+                   id="paymentMomo"
+                   value="MOMO">
+
+            <label class="payment-method"
+                   for="paymentMomo">
+
+                <div class="fw-semibold">
+                    Ví MoMo
+                </div>
+
+                <div class="small text-muted">
+                    Thanh toán qua MoMo
+                </div>
+
+            </label>
+
+        </div>
+
+        <button type="submit"
+                class="btn btn-success btn-lg w-100 rounded-pill mt-4">
+
+            <i class="fas fa-lock me-2"></i>
+            ĐẶT HÀNG
+        </button>
+
+        <div class="secure-note">
+            Thông tin thanh toán được bảo mật an toàn
+        </div>
+
+    </div>
+</div>
 
         </div>
         <!-- RIGHT END -->
@@ -393,6 +453,8 @@
         
         </div>
     </div>
+    </div>
+    </form>
     <!-- Checkout Page End -->
 
     <!-- Footer Start -->
@@ -542,6 +604,46 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+    const shippingInputs =
+        document.querySelectorAll(
+            'input[name="shippingMethod"]'
+        );
+
+    shippingInputs.forEach(input => {
+
+        input.addEventListener("change", function () {
+
+            document
+                .querySelectorAll(".shipping-card")
+                .forEach(card =>
+                    card.classList.remove("active"));
+
+            this.nextElementSibling
+                .classList.add("active");
+        });
+
+    });
+    const paymentInputs =
+        document.querySelectorAll(
+            'input[name="paymentMethod"]'
+        );
+
+    paymentInputs.forEach(input => {
+
+        input.addEventListener("change", function () {
+
+            document
+                .querySelectorAll(".payment-method")
+                .forEach(method =>
+                    method.classList.remove("active"));
+
+            this.nextElementSibling
+                .classList.add("active");
+        });
+
+    });
+    </script>
 </body>
 
 </html>

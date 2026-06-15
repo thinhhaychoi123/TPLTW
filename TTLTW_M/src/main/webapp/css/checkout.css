@@ -99,12 +99,12 @@ body{
 }
 
 .payment-method{
-    border:1px solid #dee2e6;
-    border-radius:16px;
-    padding:16px;
-    margin-bottom:14px;
-    cursor:pointer;
-    transition:.2s;
+    display: block;
+    border: 2px solid #e9ecef;
+    border-radius: 16px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .payment-method:hover{
@@ -122,3 +122,4 @@ body{
     font-size:14px;
     color:#6c757d;
 }
+

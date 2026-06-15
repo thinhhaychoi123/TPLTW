@@ -82,8 +82,8 @@ public class CartServlet extends HttpServlet {
 
 	private void updateQuantity(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 //		System.out.println(request.getParameter("pid") != null);
-		int bid = Integer.parseInt(request.getParameter("pid"));
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		 int bid = Integer.parseInt(request.getParameter("pid"));
+		 int quantity = Integer.parseInt(request.getParameter("quantity"));
 	     HttpSession session = request.getSession();
 	     User user = (User) session.getAttribute("currentUser");
 	     Product b = productService.getProductFromId(bid);

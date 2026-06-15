@@ -17,7 +17,7 @@ public class CartDAO {
 		List<CartViewDAO> resultList = new ArrayList<CartViewDAO>();
 		try {
 			conn = DatabaseConnection.getConnection();
-			String sql = "SELECT ci.cart_item_id, ci.quantity, p.product_id ,p.name, p.price"
+			String sql = "SELECT ci.cart_item_id, c.cart_id, ci.quantity, p.product_id ,p.name, p.price"
 					+ " FROM cart_items ci JOIN products p ON ci.product_id = p.product_id JOIN carts c ON ci.cart_id = c.cart_id"
 					+ " WHERE c.user_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -25,11 +25,12 @@ public class CartDAO {
 			ResultSet result = ps.executeQuery();
 			while (result.next()) {
 				int categoryid = result.getInt("cart_item_id");
+				int cartid = result.getInt("cart_id");
 				int productid = result.getInt("product_id");
 				String name = result.getString("name");
 				double price = result.getDouble("price");
 				int quantity = result.getInt("quantity");
-				CartViewDAO cartviewdao = new CartViewDAO(categoryid,productid,name,price,quantity);
+				CartViewDAO cartviewdao = new CartViewDAO(categoryid,cartid,productid,name,price,quantity);
 				resultList.add(cartviewdao);
 			}
 			ps.close();

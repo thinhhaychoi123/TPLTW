@@ -27,7 +27,10 @@ public class AdminCheckFilter implements Filter {
                 ? (User) session.getAttribute("currentUser")
                 : null;
 
-
+        if(currentUser == null) {
+        	response.sendRedirect(request.getContextPath() + "/login"); //Đưa về đăng nhập, nếu người dùng chưa đăng nhập.
+        	return;
+        }
         if (currentUser.getRoleId() != 2) {
         	 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Không có quyền !");
             return;

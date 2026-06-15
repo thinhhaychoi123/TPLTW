@@ -9,6 +9,7 @@ import me.nhom65.dao.OtpDAO;
 import me.nhom65.dao.UserDAO;
 import me.nhom65.model.OTP;
 import me.nhom65.model.User;
+import me.nhom65.util.enums.OTPType;
 
 public class UserService {
 	
@@ -34,24 +35,37 @@ public class UserService {
 		return userDAO.createUser(username, confirmPassword, gmail, phone, address);
 	}
 
-	public void createOtp(String username, String type, LocalDateTime time) {
+	public boolean createOtpAndSend(String username, OTPType type, LocalDateTime time) {
 		if(username == null || username.isBlank()) {
-			return;
+			return false;
 		}
 		User user = userDAO.findByUsername(username);
 		if(user == null) {
-			return;
+			return false;
 		}
+		return createOtp(user,type,time, true);
+	}
+	private boolean createOtp(User user, OTPType type, LocalDateTime time, boolean sendmail) {
 		ThreadLocalRandom r = ThreadLocalRandom.current();
 		int randomvalue = r.nextInt(0, 1000000);
 		String otp = String.format("%06d", randomvalue);
-		boolean b = otpDAO.createOtp(user, type, otp, Timestamp.valueOf(time));
-		if(b) {
-	       	mailService.sendOTP(user.getEmail(), otp);
+		boolean b =  otpDAO.createOtp(user, type, otp, Timestamp.valueOf(time));
+		if(b && sendmail) {
+			mailService.sendOTP(user.getEmail(), otp);
+			return true;
 		}
+		return false;
 	}
 	
-	public OTP getOtp(String username, String type) {
+	public boolean isOtpExpired(String username, OTPType type) {
+		OTP get = getOtp(username, type);
+		if(get != null) {
+			
+		}
+		return false;	
+	}
+	
+	public OTP getOtp(String username, OTPType type) {
 		if(username == null || username.isBlank()) {
 			return null;
 		}
@@ -62,17 +76,17 @@ public class UserService {
 		return userDAO.findByEmail(email);
 	}
 
-	public OTP getOtp(String username, String type, String otp) {
+	public OTP getOtp(String username, OTPType type, String otp) {
 		if(username == null || username.isBlank()) {
 			return null;
 		}
 		return otpDAO.getOtpFromCode(username,type,otp);
 	}
 	
-	public boolean activeOtp(int i, String type, String otp) {
+	public boolean activeOtp(int i, OTPType type, String otp) {
 		return otpDAO.activeOTP(i, type, otp);
 	}
-	public boolean isUnActiveOtp(String username, String type) {
+	public boolean isUnActiveOtp(String username, OTPType type) {
 		if(username == null || username.isBlank()) {
 			return false;
 		}

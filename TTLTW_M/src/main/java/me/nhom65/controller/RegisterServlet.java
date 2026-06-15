@@ -13,6 +13,7 @@ import me.nhom65.model.User;
 import me.nhom65.service.UserService;
 import me.nhom65.util.UserValidcator;
 import me.nhom65.util.UserValidcator.ResultValidcator;
+import me.nhom65.util.enums.OTPType;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -55,7 +56,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
         if (userService.addUser(username,password,confirmPassword,gmail,phone,address)) {
-        	userService.createOtp(username,"REGISTER", LocalDateTime.now().plusMinutes(15));
+        	userService.createOtpAndSend(username, OTPType.REGISTER, LocalDateTime.now().plusMinutes(15));
         	HttpSession session = request.getSession(true);
             session.setAttribute("email", gmail);
 			response.sendRedirect("otp");

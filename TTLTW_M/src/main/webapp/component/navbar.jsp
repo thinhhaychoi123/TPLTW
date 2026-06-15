@@ -66,6 +66,7 @@
                                 <div class="dropdown-menu m-0">
                                     <a href="${pageContext.request.contextPath}/cart" class="dropdown-item">Giỏ hàng</a>
                                     <a href="${pageContext.request.contextPath}/checkout" class="dropdown-item">Thanh toán</a>
+                                     <a href="${pageContext.request.contextPath}/orderlist" class="dropdown-item">Xem don hang</a>
                                 </div>
                             </div>
                             <a href="${pageContext.request.contextPath}/contact" class="nav-item nav-link me-2">Liên hệ</a>

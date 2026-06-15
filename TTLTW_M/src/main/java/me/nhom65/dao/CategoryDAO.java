@@ -1,6 +1,7 @@
 package me.nhom65.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,5 +40,78 @@ public class CategoryDAO {
 			}
 		}
 		return resultList;
+	}
+	
+	public int addCategory(Category category) {
+		Connection conn = null;
+		try {
+			conn = DatabaseConnection.getConnection();
+			String sql = "INSERT INTO categories(name, description,parent_id) "
+					+ "VALUES (?, ?, ?)";
+			PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, category.getName());
+			ps.setString(2, category.getDescription());
+			ps.setInt(3, 1);
+			int affectedRows = ps.executeUpdate();
+			if (affectedRows > 0) {
+				ResultSet rs = ps.getGeneratedKeys();
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
+
+	public boolean updateCategory(Category category) {
+		Connection conn = null;
+		try {
+			conn = DatabaseConnection.getConnection();
+			String sql = "UPDATE categories "
+					+	"SET name = ?, description = ? "
+					+ "WHERE category_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, category.getName());
+			ps.setString(2, category.getDescription());
+			ps.setInt(3, category.getCategoryId());
+			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
+	public boolean deleteCategory(int categoryId) {
+		Connection conn = null;
+		try {
+			conn = DatabaseConnection.getConnection();
+			String sql = "DELETE FROM categories WHERE category_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, categoryId);
+			return ps.executeUpdate() > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 }

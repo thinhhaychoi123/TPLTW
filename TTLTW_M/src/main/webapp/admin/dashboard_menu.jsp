@@ -68,4 +68,8 @@
         <i class="bi bi-gear"></i>
         <span>Cài đặt</span>
       </a>
+      <a class="nav-item" href="${pageContext.request.contextPath}/home">
+        <i class="bi bi-arrow-left"></i>
+        <span>Về trang chủ</span>
+      </a>
     </aside>

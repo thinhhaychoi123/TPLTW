@@ -37,14 +37,14 @@
       <!-- Panel -->
       <section class="panel">
         <div class="panel-head">
-          <h5>Products list</h5>
+          <h5>Danh sach san pham</h5>
           <div class="d-flex align-items-center gap-2">
             <button class="btn btn-soft" type="button">
               <i class="bi bi-funnel me-1"></i> Lọc
             </button>
-            <button class="btn btn-primary-soft" type="button" data-bs-toggle="modal" data-bs-target="#modalAddProduct">
+            <a class="btn btn-primary-soft" href="${pageContext.request.contextPath}/admin/product-list/add">
               <i class="bi bi-plus-lg me-1"></i> Thêm sản phẩm
-            </button>
+            </a>
           </div>
         </div>
 
@@ -97,8 +97,16 @@
                     <span class="badge badge-pill badge-scheduled">${product.status}</span>
                   </td>
                   <td class="text-end">
-                    <a href="#" class="text-decoration-none text-primary fw-bold">Sửa</a>
-                  </td>
+                      		<a href="${pageContext.request.contextPath}/admin/product-list/edit?id=${product.productId}"
+                    		class="btn btn-warning btnEditCategory">
+               				<i class="bi bi-pencil-square me-1"></i>
+           					 </a>
+           					 
+           					 <a href="${pageContext.request.contextPath}/admin/product-list/delete?id=${product.productId}"
+        						class="btn btn-danger btnDeleteCategory">
+    							<i class="bi bi-trash me-1"></i>
+							</a>
+                    </td>
                 </tr>
 			</c:forEach>
               

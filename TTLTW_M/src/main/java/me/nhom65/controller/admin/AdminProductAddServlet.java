@@ -1,4 +1,4 @@
-package me.nhom65.controller;
+package me.nhom65.controller.admin;
 
 import java.io.IOException;
 
@@ -10,9 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import me.nhom65.model.Product;
 import me.nhom65.service.ProductService;
 
-@WebServlet("/product")
-public class ProductServlet extends HttpServlet {
-	
+@WebServlet("/admin/product-list/add")
+public class AdminProductAddServlet extends HttpServlet {
+
 	/**
 	 * 
 	 */
@@ -26,11 +26,13 @@ public class ProductServlet extends HttpServlet {
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-	    Product product = productService.getProductFromId(id);
-	    request.setAttribute("product", product);
-		request.getServletContext().getRequestDispatcher("/single.jsp").forward(request, response);
-		response.sendRedirect(request.getContextPath() + "/login");
+		request.setAttribute("activeMenu", "product");
+		request.getServletContext().getRequestDispatcher("/admin/admin_product_add.jsp").forward(request, response);
+		
 	}
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+	
 
 }
